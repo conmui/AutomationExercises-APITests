@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import io.restassured.response.Response;
@@ -7,7 +8,7 @@ import static io.restassured.RestAssured.when;
 //        API 1: Get All Products List
 public class APITest1 extends BaseTest {
     @Test
-    public void test() {
+    public void getAllProducts_checkForProductsList() {
 //        API URL: https://automationexercise.com/api/productsList
 //        Request Method: GET
         Response response = when().get("/productsList");
@@ -18,4 +19,5 @@ public class APITest1 extends BaseTest {
 //        Response JSON: All products list
         List<Map<String, Object>> products = response.jsonPath().get("products");
     }
+
 }
