@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -13,15 +14,20 @@ import static org.hamcrest.Matchers.equalTo;
 public class APITest4 extends BaseTest {
     @Test
     public void putUpdateProduct_checkReqNotAllowedAndBrandsListSameBeforeAndAfterReq() {
-        Map<String, Object> updatedBrand = createBrand(3, "Uniqlo");
+        BaseService baseService = new BaseService();
         String endpoint = "/brandsList";
+        Map<String, Object> updatedBrand = createBrand(3, "Uniqlo");
         String listName = "brands";
 
-        List<Map<String, Object>> initialBrandsList = getResponseList(endpoint, listName);
+        Response initialGetResponse = baseService.getRequest(endpoint);
+        Response putResponse = baseService.putRequest(endpoint, updatedBrand);
+        Response finalGetResponse = baseService.getRequest(endpoint);
 
-        verifyResponse("put", endpoint, updatedBrand, NOT_ALLOWED_RESPONSE_CODE, NOT_ALLOWED_MESSAGE);
+        List<Map<String, Object>> initialBrandsList = getResponseList(initialGetResponse, listName);
 
-        List<Map<String, Object>> finalBrandsList = getResponseList(endpoint, listName);
+        verifyResponse(putResponse, NOT_ALLOWED_RESPONSE_CODE, NOT_ALLOWED_MESSAGE);
+
+        List<Map<String, Object>> finalBrandsList = getResponseList(finalGetResponse, listName);
         assertThat(initialBrandsList, equalTo(finalBrandsList));
     }
 

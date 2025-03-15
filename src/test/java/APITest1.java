@@ -1,6 +1,5 @@
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
-import static io.restassured.RestAssured.when;
 
 //        API 1: Get All Products List
 //        API URL: https://automationexercise.com/api/productsList
@@ -10,7 +9,10 @@ import static io.restassured.RestAssured.when;
 public class APITest1 extends BaseTest {
     @Test
     public void getAllProductsList_checkProductsListExists() {
-        Response response = when().get("/productsList");
+        BaseService baseService = new BaseService();
+        String endpoint = "/productsList";
+
+        Response response = baseService.getRequest(endpoint);
 
         checkResponseCode(response, OK_RESPONSE_CODE);
 
