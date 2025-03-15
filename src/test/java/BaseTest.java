@@ -19,8 +19,9 @@ public class BaseTest {
         RestAssured.baseURI = "https://automationexercise.com/api";
     }
 
-    public void checkStatusCode(Response response, int responseCode) {
-        response.then().assertThat().statusCode(responseCode);
+    public void checkResponseCode(Response response, int expectedResponseCode) {
+        int responseCode = response.getBody().jsonPath().get("responseCode");
+        assertThat(responseCode, equalTo(expectedResponseCode));
     }
 
     public void verifyListExists(Response response, String listName) {

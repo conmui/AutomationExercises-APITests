@@ -11,9 +11,8 @@ public class APITest3 extends BaseTest {
     @Test
     public void getAllBrandsList_checkProductsListExists() {
         Response response = when().get("/brandsList");
-        int expectedStatusCode = 200;
 
-        checkStatusCode(response, expectedStatusCode);
+        checkResponseCode(response, OK_RESPONSE_CODE);
 
         verifyListExists(response, "brands");
     }
