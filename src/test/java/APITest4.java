@@ -13,21 +13,19 @@ import static org.hamcrest.Matchers.equalTo;
 //        Response Message: This request method is not supported.
 public class APITest4 extends BaseTest {
     @Test
-    public void putUpdateProduct_checkReqNotAllowedAndBrandsListSameBeforeAndAfterReq() {
+    public void putUpdateProduct_checkReqNotAllowedAndBrandsListUnchanged() {
         BaseService baseService = new BaseService();
         String endpoint = "/brandsList";
-        Map<String, Object> updatedBrand = createBrand(3, "Uniqlo");
         String listName = "brands";
-
-        Response initialGetResponse = baseService.getRequest(endpoint);
+        Map<String, Object> updatedBrand = createBrand(3, "Uniqlo");
+        List<Map<String, Object>> initialBrandsList = baseService.getResponseList(baseService.getRequest(endpoint), listName);
         Response putResponse = baseService.putRequest(endpoint, updatedBrand);
-        Response finalGetResponse = baseService.getRequest(endpoint);
+        List<Map<String, Object>> finalBrandsList = baseService.getResponseList(baseService.getRequest(endpoint), listName);
 
-        List<Map<String, Object>> initialBrandsList = getResponseList(initialGetResponse, listName);
+        assertThat(putResponse.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));
+        assertThat(baseService.getResponseCode(putResponse), equalTo(NOT_ALLOWED_RESPONSE_CODE));
+        assertThat(baseService.getResponseMessage(putResponse), equalTo(NOT_ALLOWED_MESSAGE));
 
-        verifyResponse(putResponse, NOT_ALLOWED_RESPONSE_CODE, NOT_ALLOWED_MESSAGE);
-
-        List<Map<String, Object>> finalBrandsList = getResponseList(finalGetResponse, listName);
         assertThat(initialBrandsList, equalTo(finalBrandsList));
     }
 

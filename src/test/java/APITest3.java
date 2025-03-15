@@ -1,5 +1,9 @@
+import java.util.List;
+import java.util.Map;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 //        API 3: Get All Brands List
 //        API URL: https://automationexercise.com/api/brandsList
@@ -10,12 +14,13 @@ public class APITest3 extends BaseTest {
     @Test
     public void getAllBrandsList_checkProductsListExists() {
         BaseService baseService = new BaseService();
-        String endpoint = "/brandsList";
+        Response response = baseService.getRequest("/brandsList");
+        List<Map<String, Object>> brandsList = baseService.getResponseList(response, "brands");
 
-        Response response = baseService.getRequest(endpoint);
+        assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));
 
-        checkResponseCode(response, OK_RESPONSE_CODE);
+        assertThat(baseService.getResponseCode(response), equalTo(OK_RESPONSE_STATUS_CODE));
 
-        verifyListExists(response, "brands");
+        verifyResponseListExists(brandsList);
     }
 }
