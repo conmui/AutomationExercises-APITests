@@ -1,13 +1,8 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
-import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 //        API 2: POST To All Products List
@@ -17,16 +12,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 //        Response Message: This request method is not supported.
 public class APITest2 extends BaseTest {
     @Test
-    public void postNewProduct_checkReqNotSupportedAndProductsListSameBeforeAndAfter() {
+    public void postNewProduct_checkReqNotAllowedAndProductsListSameBeforeAndAfterReq() {
         Map<String, Object> newProduct = createProduct(50, "Relaxed Jeans", "Rs. 1100", "H&M", "Men", "Jeans");
-        final int EXPECTED_RESPONSE_CODE = 405;
-        final String EXPECTED_MESSAGE = "This request method is not supported.";
+        String url = "/productsList";
+        String listName = "products";
 
-        List<Map<String, Object>> initialProductsList = getProductsList();
+        List<Map<String, Object>> initialProductsList = getResponseList(url, listName);
 
-        verifyPostResponse(newProduct, EXPECTED_RESPONSE_CODE, EXPECTED_MESSAGE);
+        verifyResponse("post", url, newProduct, NOT_ALLOWED_RESPONSE_CODE, NOT_ALLOWED_MESSAGE);
 
-        List<Map<String, Object>> finalProductsList = getProductsList();
+        List<Map<String, Object>> finalProductsList = getResponseList(url, listName);
         assertThat(initialProductsList, equalTo(finalProductsList));
     }
 
@@ -43,21 +38,5 @@ public class APITest2 extends BaseTest {
         product.put("category", category);
 
         return product;
-    }
-
-    public List<Map<String, Object>> getProductsList() {
-        Response response = when().get("/productsList");
-
-        return response.getBody().jsonPath().get("products");
-    }
-
-    public void verifyPostResponse(Map<String, Object> newProduct, int expectedResponseCode, String expectedMessage) {
-        Response response = given().contentType("application/json").body(newProduct).when().post("/productsList");
-        JsonPath json = response.getBody().jsonPath();
-        int responseCode = json.getInt("responseCode");
-        String responseMessage = json.get("message");
-
-        assertThat(responseCode, equalTo(expectedResponseCode));
-        assertThat(responseMessage, equalTo(expectedMessage));
     }
 }
