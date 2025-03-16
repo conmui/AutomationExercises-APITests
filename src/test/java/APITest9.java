@@ -1,3 +1,4 @@
+import java.util.Map;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -12,7 +13,8 @@ public class APITest9 extends BaseTest {
     @Test
     public void deleteLogin_checkNotAllowed() {
         BaseService baseService = new BaseService();
-        Response response = baseService.sendDeleteRequest("/verifyLogin", "email", "charliekelly@email.com");
+        Map<String, String> loginDetails = Map.of("email", "charliekelly@email.com", "password", "itsalwayssunny");
+        Response response = baseService.sendDeleteRequest("/verifyLogin", loginDetails);
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));
         assertThat(baseService.getResponseCode(response), equalTo(NOT_ALLOWED_RESPONSE_CODE));

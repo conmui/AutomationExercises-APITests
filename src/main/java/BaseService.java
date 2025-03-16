@@ -54,9 +54,9 @@ public class BaseService {
     }
 
     //DELETE
-    public Response sendDeleteRequest(String endpoint, String queryParam, String queryValue) {
+    public Response sendDeleteRequest(String endpoint, Map<String, String> queries) {
         return given()
-                    .param(queryParam, queryValue)
+                    .formParams(queries)
                 .when()
                     .delete(URL + endpoint);
     }

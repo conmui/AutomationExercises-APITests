@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.*;
 public class BaseTest {
     final int OK_RESPONSE_STATUS_CODE = 200;
     final String OK_RESPONSE_USER_EXISTS_MESSAGE = "User exists!";
+    final String OK_RESPONSE_ACCOUNT_DELETED = "Account deleted!";
     final int CREATED_CODE = 201;
     final String CREATED_MESSAGE = "User created!";
     final int BAD_REQUEST_CODE = 400;
