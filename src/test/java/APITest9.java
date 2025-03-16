@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.equalTo;
 //        Response Message: This request method is not supported.
 public class APITest9 extends BaseTest {
     @Test
-    public void test() {
+    public void deleteLogin_checkNotAllowed() {
         BaseService baseService = new BaseService();
         Response response = baseService.sendDeleteRequest("/verifyLogin", "email", "charliekelly@email.com");
 
