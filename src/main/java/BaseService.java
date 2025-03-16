@@ -8,49 +8,57 @@ public class BaseService {
     final String URL = "https://automationexercise.com/api";
 
     //GET
-    public Response getRequest(String endpoint) {
+    public Response sendGetRequest(String endpoint) {
         return given()
                 .when()
                     .get(URL + endpoint);
     }
 
     //POST
-    public Response postRequest(RequestSpecification requestSpecification, String endpoint) {
+    public Response sendPostRequest(RequestSpecification requestSpecification, String endpoint) {
         return requestSpecification
                 .when()
                     .post(URL + endpoint);
     }
 
-    public Response postRequest(String endpoint) {
+    public Response sendPostRequest(String endpoint) {
         return given()
                 .when()
                     .post(URL + endpoint);
     }
 
-    public Response postRequestWithQueries(String endpoint, Map<String, String> queries) {
+    public Response sendPostRequestWithQueries(String endpoint, Map<String, String> queries) {
         RequestSpecification requestSpecification =
                 given()
                         .params(queries);
 
-        return postRequest(requestSpecification, endpoint);
+        return sendPostRequest(requestSpecification, endpoint);
     }
 
-    public Response postRequestWithBody(String endpoint, Map<String, Object> newMap) {
+    public Response sendPostRequestWithBody(String endpoint, Map<String, Object> newMap) {
         RequestSpecification requestSpecification =
                 given()
                         .contentType("application/json")
                         .body(newMap);
 
-        return postRequest(requestSpecification, endpoint);
+        return sendPostRequest(requestSpecification, endpoint);
     }
 
     //PUT
-    public Response putRequest(String endpoint, Map<String, Object> updatedMap) {
+    public Response sendPutRequest(String endpoint, Map<String, Object> updatedMap) {
         return given()
                     .contentType("application/json")
                     .body(updatedMap)
                 .when()
                     .put(URL + endpoint);
+    }
+
+    //DELETE
+    public Response sendDeleteRequest(String endpoint, String queryParam, String queryValue) {
+        return given()
+                    .param(queryParam, queryValue)
+                .when()
+                    .delete(URL + endpoint);
     }
 
     public int getResponseCode(Response response) {

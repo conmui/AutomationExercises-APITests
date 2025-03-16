@@ -14,7 +14,7 @@ public class APITest1 extends BaseTest {
     @Test
     public void getAllProductsList_checkProductsListExists() {
         BaseService baseService = new BaseService();
-        Response response = baseService.getRequest("/productsList");
+        Response response = baseService.sendGetRequest("/productsList");
         List<Map<String, Object>> productsList = baseService.getResponseList(response, "products");
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));

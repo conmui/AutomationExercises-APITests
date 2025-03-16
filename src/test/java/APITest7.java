@@ -15,7 +15,7 @@ public class APITest7 extends BaseTest {
     public void postValidLogin_checkUserExists() {
         BaseService baseService = new BaseService();
         Map<String, String> queries = Map.of("email", "charliekelly@email.com", "password", "itsalwayssunny");
-        Response response = baseService.postRequestWithQueries("/verifyLogin", queries);
+        Response response = baseService.sendPostRequestWithQueries("/verifyLogin", queries);
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));
         assertThat(baseService.getResponseCode(response), equalTo(OK_RESPONSE_STATUS_CODE));

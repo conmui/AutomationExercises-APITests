@@ -13,7 +13,7 @@ public class APITest8 extends BaseTest {
     @Test
     public void postLoginWithoutParams_checkBadRequest() {
         BaseService baseService = new BaseService();
-        Response response = baseService.postRequest("/verifyLogin");
+        Response response = baseService.sendPostRequest("/verifyLogin");
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));
         assertThat(baseService.getResponseCode(response), equalTo(BAD_REQUEST_CODE));

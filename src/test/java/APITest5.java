@@ -12,7 +12,7 @@ public class APITest5 extends BaseTest {
         BaseService baseService = new BaseService();
         String searchValue = "jean";
         Map<String, String> queries = Map.of("search_product", searchValue);
-        Response response = baseService.postRequestWithQueries( "/searchProduct", queries);
+        Response response = baseService.sendPostRequestWithQueries( "/searchProduct", queries);
         List<Map<String, Object>> productsList = baseService.getResponseList(response,"products");
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));

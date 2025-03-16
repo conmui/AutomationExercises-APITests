@@ -12,7 +12,7 @@ public class APITest6 extends BaseTest {
     @Test
     public void postSearchProductWithoutParams_checkBadRequest() {
         BaseService baseService = new BaseService();
-        Response response = baseService.postRequest("/searchProduct");
+        Response response = baseService.sendPostRequest("/searchProduct");
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));
         assertThat(baseService.getResponseCode(response), equalTo(BAD_REQUEST_CODE));

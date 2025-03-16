@@ -18,9 +18,9 @@ public class APITest2 extends BaseTest {
         String endpoint = "/productsList";
         String listName = "products";
         Map<String, Object> newProduct = createProduct(50, "Relaxed Jeans", "Rs. 1100", "H&M", "Men", "Jeans");
-        List<Map<String, Object>> initialProductsList = baseService.getResponseList(baseService.getRequest(endpoint), listName);
-        Response postResponse = baseService.postRequestWithBody(endpoint, newProduct);
-        List<Map<String, Object>> finalProductsList = baseService.getResponseList(baseService.getRequest(endpoint), listName);
+        List<Map<String, Object>> initialProductsList = baseService.getResponseList(baseService.sendGetRequest(endpoint), listName);
+        Response postResponse = baseService.sendPostRequestWithBody(endpoint, newProduct);
+        List<Map<String, Object>> finalProductsList = baseService.getResponseList(baseService.sendGetRequest(endpoint), listName);
 
         assertThat(postResponse.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));
         assertThat(baseService.getResponseCode(postResponse), equalTo(NOT_ALLOWED_RESPONSE_CODE));

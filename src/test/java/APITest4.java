@@ -18,9 +18,9 @@ public class APITest4 extends BaseTest {
         String endpoint = "/brandsList";
         String listName = "brands";
         Map<String, Object> updatedBrand = createBrand(3, "Uniqlo");
-        List<Map<String, Object>> initialBrandsList = baseService.getResponseList(baseService.getRequest(endpoint), listName);
-        Response putResponse = baseService.putRequest(endpoint, updatedBrand);
-        List<Map<String, Object>> finalBrandsList = baseService.getResponseList(baseService.getRequest(endpoint), listName);
+        List<Map<String, Object>> initialBrandsList = baseService.getResponseList(baseService.sendGetRequest(endpoint), listName);
+        Response putResponse = baseService.sendPutRequest(endpoint, updatedBrand);
+        List<Map<String, Object>> finalBrandsList = baseService.getResponseList(baseService.sendGetRequest(endpoint), listName);
 
         assertThat(putResponse.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));
         assertThat(baseService.getResponseCode(putResponse), equalTo(NOT_ALLOWED_RESPONSE_CODE));
