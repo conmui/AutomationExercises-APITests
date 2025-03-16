@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import io.restassured.response.Response;
@@ -11,7 +12,8 @@ public class APITest5 extends BaseTest {
     public void postSearchProduct_checkProductsListRelatedToSearch() {
         BaseService baseService = new BaseService();
         String queryValue = "jean";
-        Response postResponse = baseService.postRequestWithQuery( "/searchProduct", "search_product", queryValue);
+        Map<String, String> queries = Map.of("search_product", queryValue);
+        Response postResponse = baseService.postRequestWithQueries( "/searchProduct", queries);
         List<Map<String, Object>> productsList = baseService.getResponseList(postResponse,"products");
 
         assertThat(postResponse.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));

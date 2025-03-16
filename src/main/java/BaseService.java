@@ -27,10 +27,10 @@ public class BaseService {
                     .post(URL + endpoint);
     }
 
-    public Response postRequestWithQuery(String endpoint, String param, String value) {
+    public Response postRequestWithQueries(String endpoint, Map<String, String> queries) {
         RequestSpecification requestSpecification =
                 given()
-                    .param(param, value);
+                        .params(queries);
 
         return postRequest(requestSpecification, endpoint);
     }
