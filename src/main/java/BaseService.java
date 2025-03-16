@@ -3,8 +3,6 @@ import java.util.Map;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 
 public class BaseService {
     final String URL = "https://automationexercise.com/api";
@@ -19,6 +17,12 @@ public class BaseService {
     //POST
     public Response postRequest(RequestSpecification requestSpecification, String endpoint) {
         return requestSpecification
+                .when()
+                    .post(URL + endpoint);
+    }
+
+    public Response postRequest(String endpoint) {
+        return given()
                 .when()
                     .post(URL + endpoint);
     }

@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.*;
 
 public class BaseTest {
     final int OK_RESPONSE_STATUS_CODE = 200;
+    final int BAD_REQUEST_CODE = 400;
+    final String BAD_REQUEST_MESSAGE = "Bad request, search_product parameter is missing in POST request.";
     final int NOT_ALLOWED_RESPONSE_CODE = 405;
     final String NOT_ALLOWED_MESSAGE = "This request method is not supported.";
 
