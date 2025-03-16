@@ -6,6 +6,8 @@ import static org.hamcrest.Matchers.*;
 public class BaseTest {
     final int OK_RESPONSE_STATUS_CODE = 200;
     final String OK_RESPONSE_USER_EXISTS_MESSAGE = "User exists!";
+    final int CREATED_CODE = 201;
+    final String CREATED_MESSAGE = "User created!";
     final int BAD_REQUEST_CODE = 400;
     final String BAD_REQUEST_MESSAGE_SEARCH = "Bad request, search_product parameter is missing in POST request.";
     final String BAD_REQUEST_MESSAGE_LOGIN = "Bad request, email or password parameter is missing in POST request.";

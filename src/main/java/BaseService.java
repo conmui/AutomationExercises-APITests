@@ -61,6 +61,7 @@ public class BaseService {
                     .delete(URL + endpoint);
     }
 
+    //Response
     public int getResponseCode(Response response) {
         return response
                 .getBody()
