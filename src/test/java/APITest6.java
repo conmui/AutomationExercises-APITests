@@ -10,12 +10,12 @@ import static org.hamcrest.Matchers.equalTo;
 //        Response Message: Bad request, search_product parameter is missing in POST request.
 public class APITest6 extends BaseTest {
     @Test
-    public void postSearchProductWithoutParams_checkBadReq() {
+    public void postSearchProductWithoutParams_checkBadRequest() {
         BaseService baseService = new BaseService();
         Response response = baseService.postRequest("/searchProduct");
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));
         assertThat(baseService.getResponseCode(response), equalTo(BAD_REQUEST_CODE));
-        assertThat(baseService.getResponseMessage(response), equalTo(BAD_REQUEST_MESSAGE));
+        assertThat(baseService.getResponseMessage(response), equalTo(BAD_REQUEST_MESSAGE_SEARCH));
     }
 }
