@@ -5,17 +5,12 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-//        API 1: Get All Products List
-//        API URL: https://automationexercise.com/api/productsList
-//        Request Method: GET
-//        Response Code: 200
-//        Response JSON: All products list
 public class APITest1 extends BaseTest {
     @Test
     public void getAllProductsList_checkProductsListExists() {
         BaseService baseService = new BaseService();
         Response response = baseService.sendGetRequest("/productsList");
-        List<Map<String, Object>> productsList = baseService.getResponseList(response, "products");
+        List<Map<String, Object>> productsList = baseService.getResponseData(response, "products");
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));
 

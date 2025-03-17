@@ -4,11 +4,6 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-//        API 9: DELETE To Verify Login
-//        API URL: https://automationexercise.com/api/verifyLogin
-//        Request Method: DELETE
-//        Response Code: 405
-//        Response Message: This request method is not supported.
 public class APITest9 extends BaseTest {
     @Test
     public void deleteLogin_checkNotAllowed() {

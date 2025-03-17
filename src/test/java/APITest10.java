@@ -4,12 +4,6 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-//        API 10: POST To Verify Login with invalid details
-//        API URL: https://automationexercise.com/api/verifyLogin
-//        Request Method: POST
-//        Request Parameters: email, password (invalid values)
-//        Response Code: 404
-//        Response Message: User not found!
 public class APITest10 extends BaseTest {
     @Test
     public void postLoginWithInvalidDetails_checkUserNotFound() {

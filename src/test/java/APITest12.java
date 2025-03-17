@@ -4,12 +4,6 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-//        API 12: DELETE METHOD To Delete User Account
-//        API URL: https://automationexercise.com/api/deleteAccount
-//        Request Method: DELETE
-//        Request Parameters: email, password
-//        Response Code: 200
-//        Response Message: Account deleted!
 public class APITest12 extends BaseTest {
     @Test
     public void deleteUserAccount_checkDeletedSuccessfully() {

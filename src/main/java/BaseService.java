@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.Map;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -12,6 +11,20 @@ public class BaseService {
         return given()
                 .when()
                     .get(URL + endpoint);
+    }
+
+    public Response sendGetRequest(RequestSpecification requestSpecification, String endpoint) {
+        return requestSpecification
+                .when()
+                .get(URL + endpoint);
+    }
+
+    public Response sendGetRequestWithQuery(String endpoint, String queryParam, String queryValue) {
+        RequestSpecification requestSpecification =
+                given()
+                        .param(queryParam, queryValue);
+
+        return sendGetRequest(requestSpecification, endpoint);
     }
 
     //POST
@@ -69,11 +82,11 @@ public class BaseService {
                 .getInt("responseCode");
     }
 
-    public List<Map<String, Object>> getResponseList(Response response, String listName) {
+    public <T> T getResponseData(Response response, String dataType) {
         return response
                 .getBody()
                 .jsonPath()
-                .get(listName);
+                .get(dataType);
     }
 
     public String getResponseMessage(Response response) {

@@ -3,12 +3,6 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-//        API 8: POST To Verify Login without email parameter
-//        API URL: https://automationexercise.com/api/verifyLogin
-//        Request Method: POST
-//        Request Parameter: password
-//        Response Code: 400
-//        Response Message: Bad request, email or password parameter is missing in POST request.
 public class APITest8 extends BaseTest {
     @Test
     public void postLoginWithoutParams_checkBadRequest() {
