@@ -13,7 +13,7 @@ public class APITest9 extends BaseTest {
     @Test
     public void deleteLogin_checkNotAllowed() {
         BaseService baseService = new BaseService();
-        Map<String, String> loginDetails = Map.of("email", "charliekelly@email.com", "password", "itsalwayssunny");
+        Map<String, Object> loginDetails = Map.of("email", "charliekelly@email.com", "password", "itsalwayssunny");
         Response response = baseService.sendDeleteRequest("/verifyLogin", loginDetails);
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));

@@ -14,7 +14,7 @@ public class APITest10 extends BaseTest {
     @Test
     public void postLoginWithInvalidDetails_checkUserNotFound() {
         BaseService baseService = new BaseService();
-        Map<String, String> invalidDetails = Map.of("email", "charlie@email.com", "password", "itsalwaysSunny");
+        Map<String, Object> invalidDetails = Map.of("email", "charlie@email.com", "password", "itsalwaysSunny");
         Response response = baseService.sendPostRequestWithQueries("/verifyLogin", invalidDetails);
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));

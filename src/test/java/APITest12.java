@@ -14,7 +14,7 @@ public class APITest12 extends BaseTest {
     @Test
     public void deleteUserAccount_checkDeletedSuccessfully() {
         BaseService baseService = new BaseService();
-        Map<String, String> loginDetails = Map.of("email", "charliekelly@email.com", "password", "itsalwayssunny");
+        Map<String, Object> loginDetails = Map.of("email", "charliekelly@email.com", "password", "itsalwayssunny");
         Response response = baseService.sendDeleteRequest("/deleteAccount", loginDetails);
 
         assertThat(response.getStatusCode(), equalTo(OK_RESPONSE_STATUS_CODE));

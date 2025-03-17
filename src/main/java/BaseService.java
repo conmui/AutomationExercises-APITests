@@ -27,7 +27,7 @@ public class BaseService {
                     .post(URL + endpoint);
     }
 
-    public Response sendPostRequestWithQueries(String endpoint, Map<String, String> queries) {
+    public Response sendPostRequestWithQueries(String endpoint, Map<String, Object> queries) {
         RequestSpecification requestSpecification =
                 given()
                         .params(queries);
@@ -54,7 +54,7 @@ public class BaseService {
     }
 
     //DELETE
-    public Response sendDeleteRequest(String endpoint, Map<String, String> queries) {
+    public Response sendDeleteRequest(String endpoint, Map<String, Object> queries) {
         return given()
                     .formParams(queries)
                 .when()

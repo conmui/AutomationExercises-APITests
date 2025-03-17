@@ -11,7 +11,7 @@ public class APITest5 extends BaseTest {
     public void postSearchProduct_checkProductsListRelatedToSearch() {
         BaseService baseService = new BaseService();
         String searchValue = "jean";
-        Map<String, String> queries = Map.of("search_product", searchValue);
+        Map<String, Object> queries = Map.of("search_product", searchValue);
         Response response = baseService.sendPostRequestWithQueries( "/searchProduct", queries);
         List<Map<String, Object>> productsList = baseService.getResponseList(response,"products");
 
